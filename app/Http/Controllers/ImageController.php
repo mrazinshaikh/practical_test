@@ -14,7 +14,13 @@ class ImageController extends Controller
      */
     public function index()
     {
-        return (new Image())->all();
+        $images = (new Image())->all();
+
+        foreach ($images as $key => $imageObject) {
+            $images[$key]['image'] = url('/images') . '/' . $imageObject->image;
+        }
+
+        return $images;
     }
 
 
